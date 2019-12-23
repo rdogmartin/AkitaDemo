@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
@@ -7,7 +8,8 @@ import { AuthorizationService } from 'src/app/services/authorization.service';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
+  private subscriptions = new Subscription();
 
   constructor(
     private authorizationService: AuthorizationService,
@@ -17,8 +19,12 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
   onClick(username: string) {
-    this.authorizationService.signIn(username)
+    const subscription = this.authorizationService.signIn(username)
       .subscribe(isAuthorized => {
         if (isAuthorized) {
           this.router.navigate(['/']);
@@ -26,5 +32,7 @@ export class SignInComponent implements OnInit {
           alert('auth error');
         }
       });
+
+    this.subscriptions.add(subscription);
   }
 }
