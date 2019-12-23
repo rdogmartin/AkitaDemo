@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,13 +10,21 @@ import { Router } from '@angular/router';
 export class SignInComponent implements OnInit {
 
   constructor(
+    private authorizationService: AuthorizationService,
     private router: Router,
   ) { }
 
   ngOnInit() {
   }
 
-  onClick() {
-    this.router.navigate(['/']);
+  onClick(username: string) {
+    this.authorizationService.signIn(username)
+      .subscribe(isAuthorized => {
+        if (isAuthorized) {
+          this.router.navigate(['/']);
+        } else {
+          alert('auth error');
+        }
+      });
   }
 }

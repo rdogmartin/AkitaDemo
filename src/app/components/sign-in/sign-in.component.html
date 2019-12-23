@@ -4,11 +4,11 @@
   <form class="">
     <div>
       <mat-form-field appearance="outline" class="">
-        <input matInput placeholder="Username" value="">
+        <input #username matInput placeholder="Username" value="">
       </mat-form-field>
     </div>
     <div>
-      <button mat-flat-button color="primary" (click)="onClick()">Sign in</button>
+      <button mat-flat-button color="primary" (click)="onClick(username.value)">Sign in</button>
     </div>
   </form>
 </section>
