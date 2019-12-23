@@ -4,7 +4,12 @@
       <a routerLink="/">State Management with Akita</a>
     </h1>
     <p class="col text-right">
-      <a routerLink="signin">Sign In</a>
+      <ng-container *ngIf="currentUser$ | async as currentUser">
+        <ng-container *ngIf="currentUser.username">
+          <span>Hello, {{currentUser.username}}</span><button class="ml-5" mat-flat-button color="primary" (click)="signOut()">Sign out</button>
+        </ng-container>
+        <a *ngIf="!currentUser.username" routerLink="signin">Sign In</a>
+      </ng-container>
     </p>
   </div>
 </header>
