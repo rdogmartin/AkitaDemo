@@ -8,7 +8,7 @@ import { CurrentUserStore } from './current-user.store';
   providedIn: 'root'
 })
 export class CurrentUserQuery extends Query<CurrentUser> {
-  isLoggedIn$ = this.select(state => !!state.username);
+  isLoggedIn$ = this.select(state => !!state.userName);
 
   constructor(protected store: CurrentUserStore) {
     super(store);

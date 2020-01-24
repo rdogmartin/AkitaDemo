@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,6 +9,7 @@ import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { HeaderComponent } from './components/header/header.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -17,14 +19,16 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     AppComponent,
     SignInComponent,
     HeaderComponent,
-    OverviewComponent
+    OverviewComponent,
+    EditUserComponent
   ],
   imports: [
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
     MatButtonModule,
     MatInputModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
   providers: [],

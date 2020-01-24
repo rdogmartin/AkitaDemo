@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { SignInComponent } from './components/sign-in/sign-in.component';
+import { RouterModule, Routes } from '@angular/router';
+
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 const routes: Routes = [
+  {
+    path: 'edit-user', component: EditUserComponent
+  },
   {
     path: 'signin', component: SignInComponent
   },

@@ -4,7 +4,7 @@ import { CurrentUser } from 'src/app/models/current-user.model';
 
 function createInitialState(): CurrentUser {
   return {
-    username: null,
+    userName: null,
   };
 }
 

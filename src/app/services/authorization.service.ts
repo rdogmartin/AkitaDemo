@@ -19,22 +19,26 @@ export class AuthorizationService {
     private currentUserStore: CurrentUserStore,
   ) { }
 
-  public signIn(username: string): Observable<boolean> {
-    return this.authenticateUser(username)
+  public signIn(userName: string): Observable<boolean> {
+    return this.authenticateUser(userName)
       .pipe(
         tap(isAuthenticated => {
           if (isAuthenticated) {
-            this.currentUserStore.update({ username });
+            this.currentUserStore.update({ userName: userName });
           }
         })
       );
   }
 
   public signOut() {
-    this.currentUserStore.update({ username: null });
+    this.currentUserStore.update({ userName: null });
   }
 
-  private authenticateUser(username: string): Observable<boolean> {
+  public changeUserName(newUserName: string): void {
+    this.currentUserStore.update({ userName: newUserName });
+  }
+
+  private authenticateUser(userName: string): Observable<boolean> {
     // In a real app, this will probably make an HTTP call.
     return of(true);
   }

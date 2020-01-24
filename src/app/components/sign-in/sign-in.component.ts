@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CurrentUser } from 'src/app/models/current-user.model';
 import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AuthorizationService } from 'src/app/services/authorization.service';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit, OnDestroy {
+  currentUser: CurrentUser = { userName: null };
   private subscriptions = new Subscription();
 
   constructor(
@@ -23,8 +25,8 @@ export class SignInComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  onClick(username: string) {
-    const subscription = this.authorizationService.signIn(username)
+  onSubmit() {
+    const subscription = this.authorizationService.signIn(this.currentUser.userName)
       .subscribe(isAuthorized => {
         if (isAuthorized) {
           this.router.navigate(['/']);

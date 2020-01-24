@@ -1,3 +1,3 @@
 export interface CurrentUser {
-  username: string;
+  userName: string;
 }
