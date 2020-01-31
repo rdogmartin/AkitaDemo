@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CurrentUser } from 'src/app/models/current-user.model';
@@ -10,17 +10,14 @@ import { CurrentUserQuery } from 'src/app/state/current-user/current-user.query'
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent {
   currentUser$: Observable<CurrentUser> = this.currentUserQuery.select();
 
   constructor(
     private authorizationService: AuthorizationService,
     private currentUserQuery: CurrentUserQuery,
     private router: Router,
-    ) { }
-
-  ngOnInit() {
-  }
+  ) { }
 
   onKeyUp(event: Event) {
     const userName = (event.target as HTMLInputElement).value;
