@@ -6,7 +6,8 @@
     <p class="col text-right">
       <ng-container *ngIf="currentUser$ | async as currentUser">
         <ng-container *ngIf="currentUser.userName">
-          <span>Hello, {{currentUser.userName}}</span><a routerLink='edit-user'>Edit</a><button class="ml-5" mat-flat-button color="primary" (click)="signOut()">Sign out</button>
+          <span>Hello, {{currentUser.userName}}</span><a routerLink='edit-user'>Edit</a>
+          <button class="ml-5" mat-flat-button color="primary" (click)="signOut()">Sign out</button>
         </ng-container>
         <a *ngIf="!currentUser.userName" routerLink="/signin">Sign In</a>
       </ng-container>

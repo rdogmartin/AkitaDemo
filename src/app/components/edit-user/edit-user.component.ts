@@ -22,6 +22,11 @@ export class EditUserComponent implements OnInit {
   ngOnInit() {
   }
 
+  onKeyUp(event: Event) {
+    const userName = (event.target as HTMLInputElement).value;
+    this.authorizationService.changeUserName(userName);
+  }
+
   onSubmit(userName: string) {
     this.authorizationService.changeUserName(userName);
     this.router.navigate(['/']);

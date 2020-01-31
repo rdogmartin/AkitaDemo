@@ -4,7 +4,7 @@
   <form (ngSubmit)="onSubmit(userName.value)" novalidate>
     <div>
       <mat-form-field appearance="outline">
-        <input #userName name="userName" value="{{currentUser.userName}}" required matInput placeholder="User name">
+        <input #userName name="userName" (keyup)="onKeyUp($event)" value="{{currentUser.userName}}" required matInput placeholder="User name">
       </mat-form-field>
     </div>
     <div>
