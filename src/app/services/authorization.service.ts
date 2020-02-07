@@ -24,7 +24,7 @@ export class AuthorizationService {
       .pipe(
         tap(isAuthenticated => {
           if (isAuthenticated) {
-            this.currentUserStore.update({ userName: userName });
+            this.currentUserStore.update({ userName });
           }
         })
       );
